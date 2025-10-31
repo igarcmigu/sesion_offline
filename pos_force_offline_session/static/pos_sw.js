@@ -107,10 +107,12 @@ self.addEventListener('fetch', event => {
     // 2. ESTRATEGIA: Cache-First + Runtime Caching para TODOS los Assets de Odoo
     const isOdooAsset = url.pathname.startsWith('/web/assets/') || 
                         url.pathname.startsWith('/pos_force_offline_session/static/') ||
-                        url.pathname.startsWith('/web/image') || // Imágenes (productos, avatares)
+                        url.pathname.startsWith('/web/image') || 
+                        url.pathname.startsWith('/web/webclient/translations') || 
+                        url.pathname.startsWith('/web/dataset/call_kw/') || 
                         url.pathname.endsWith('.js') || 
                         url.pathname.endsWith('.css') ||
-                        url.pathname.endsWith('.woff2'); // Fuentes
+                        url.pathname.endsWith('.woff2'); 
     
     if (isOdooAsset) {
         
