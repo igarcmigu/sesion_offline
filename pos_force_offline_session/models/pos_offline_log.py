@@ -12,7 +12,6 @@ ODOO_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 class PosOfflineLog(models.Model):
     _name = 'pos.offline.log'
     _description = 'Registro de Eventos de Cierre Offline y Red del POS'
-    # 🚨 Cambio: Usar 'asc' para ver la historia en orden cronológico
     _order = 'timestamp asc' 
 
     session_id = fields.Many2one('pos.session', string='Sesión TPV', required=True, 
@@ -24,9 +23,8 @@ class PosOfflineLog(models.Model):
     
     # 🆕 Eventos de red y flujo detallado
     event_type = fields.Selection([
-        ('attempted_close', '1. Intento de Cierre Offline (Advertencia)'),
-        ('accepted_close', '2. Cierre Offline Aceptado'),
-        ('cancelled_close', '2. Cierre Offline Cancelado'),
+        ('attempted_close', 'Intento de Cierre Offline (Advertencia)'),
+        ('accepted_close', 'Cierre Offline Aceptado'),
         ('network_lost', '🔴 Pérdida de Conexión (Offline)'),
         ('network_recovered', '🟢 Conexión Recuperada (Online)'),
     ], string='Tipo de Evento', required=True, help="Resultado de la interacción del usuario o cambio de red.")
